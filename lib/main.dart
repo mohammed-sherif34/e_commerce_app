@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
         home: child,
         debugShowCheckedModeBanner: false,
         onGenerateRoute: RoutesGenerator.onGenerateRoute,
-        initialRoute: Routes.login,
+        initialRoute: Routes.mainLayout,
       ),
     );
   }
