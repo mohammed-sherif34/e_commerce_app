@@ -28,7 +28,9 @@ class Constants {
       'enter youre Confirm password';
   static const String confirmPassword = 'Confirm password';
   static const String alredayHaveAnAccount = 'Alreday have an account? ';
+  static const String whatDoYouSearchFor = 'what do you search for? ';
 
+//"what do you search for?"
   /*
   'enter youre Confirm password',
                         title: 'Confirm Password',
