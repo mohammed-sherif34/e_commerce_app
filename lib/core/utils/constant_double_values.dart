@@ -1,4 +1,4 @@
-abstract class ConstantDoubleValues {
+abstract class ConstDValues {
   static const double s2 = 2.0;
   static const double s3 = 3.0;
   static const double s4 = 4.0;
@@ -32,4 +32,5 @@ abstract class ConstantDoubleValues {
   static const double s32 = 32.0;
   static const double s33 = 33.0;
   static const double s34 = 34.0;
+  static const double s50 = 50.0;
 }
