@@ -48,7 +48,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         },
         child: Scaffold(
             resizeToAvoidBottomInset: true,
-            backgroundColor: AppColor.primaryColor,
+            backgroundColor: AppColors.primaryColor,
             body: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Form(
@@ -128,7 +128,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               Constants.alredayHaveAnAccount,
                               style: GoogleFonts.poppins(
                                 textStyle: const TextStyle(
-                                    color: AppColor.whiteColor,
+                                    color: AppColors.whiteColor,
                                     fontSize: 16,
                                     fontWeight: FontWeight.w500),
                               ),
@@ -141,7 +141,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 Constants.login,
                                 style: GoogleFonts.poppins(
                                   textStyle: const TextStyle(
-                                      color: AppColor.whiteColor,
+                                      color: AppColors.whiteColor,
                                       fontSize: 16,
                                       fontWeight: FontWeight.w500),
                                 ),

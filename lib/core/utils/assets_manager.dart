@@ -12,7 +12,6 @@ abstract class ImageAssets {
   static const String adv_2 = '$imagePath/adv_2.png';
   static const String adv_3 = '$imagePath/adv_3.png';
   static const String categorTest = '$imagePath/category_test.png';
-
 }
- 
+
 //assets/images/category_test.png

@@ -33,7 +33,7 @@ class _CustomAuthTextFiledState extends State<CustomAuthTextFiled> {
             widget.title,
             style: GoogleFonts.poppins(
                 textStyle: const TextStyle(
-                    color: AppColor.whiteColor,
+                    color: AppColors.whiteColor,
                     fontSize: 18,
                     fontWeight: FontWeight.w500)),
           ),
@@ -53,7 +53,7 @@ class _CustomAuthTextFiledState extends State<CustomAuthTextFiled> {
                     fontSize: 12,
                     fontWeight: FontWeight.bold),
                 filled: true,
-                fillColor: AppColor.whiteColor,
+                fillColor: AppColors.whiteColor,
                 border:
                     OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
                 hintText: widget.hintText,

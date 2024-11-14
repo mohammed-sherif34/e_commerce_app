@@ -4,7 +4,9 @@ import 'package:e_commerce_app/domain/useCases/sign_up_use_case.dart';
 import 'package:e_commerce_app/presentation/auth/cubit/auth_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
 
+@injectable
 class AuthCubit extends Cubit<AuthState> {
   SignUpUseCase? signUpUseCase;
   LoginUseCase? loginUseCase;

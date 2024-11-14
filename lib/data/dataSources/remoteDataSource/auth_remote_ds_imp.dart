@@ -7,7 +7,9 @@ import 'package:e_commerce_app/core/utils/constants_manager.dart';
 import 'package:e_commerce_app/data/dataSources/remoteDataSource/auth_remote_ds.dart';
 import 'package:e_commerce_app/data/models/user_model.dart';
 import 'package:e_commerce_app/domain/entity/sign_up_data.dart';
+import 'package:injectable/injectable.dart';
 
+@Injectable(as:AuthRemoteDs)
 class AuthRemoteDsImp implements AuthRemoteDs {
   AuthRemoteDsImp(this.apiManager);
   late ApiManager apiManager;
@@ -46,8 +48,8 @@ class AuthRemoteDsImp implements AuthRemoteDs {
         var response = await apiManager.post(
           endPoint: EndPoints.login,
           body: {
-           Constants.email: email,
-           Constants.password: password,
+            Constants.email: email,
+            Constants.password: password,
           },
         );
         var loginResponse = UserModel.fromJson(response.data);
@@ -60,7 +62,7 @@ class AuthRemoteDsImp implements AuthRemoteDs {
         return Right(Failure(errMessage: e.toString()));
       }
     } else {
-      return Right(ServerErr(errMessage:  Constants.checkInternet));
+      return Right(ServerErr(errMessage: Constants.checkInternet));
     }
   }
 }

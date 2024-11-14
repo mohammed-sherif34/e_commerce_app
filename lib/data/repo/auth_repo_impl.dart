@@ -4,7 +4,8 @@ import 'package:e_commerce_app/data/dataSources/remoteDataSource/auth_remote_ds.
 import 'package:e_commerce_app/data/models/user_model.dart';
 import 'package:e_commerce_app/domain/entity/sign_up_data.dart';
 import 'package:e_commerce_app/domain/repo/auth_repo.dart';
-
+import 'package:injectable/injectable.dart';
+@Injectable(as:AuthRepo)
 class AuthRepoImpl implements AuthRepo {
   AuthRepoImpl(
     this.authRemoteDs,
@@ -17,7 +18,8 @@ class AuthRepoImpl implements AuthRepo {
   }
 
   @override
-  Future<Either<UserModel, Failure>> login(String email, String password) async {
+  Future<Either<UserModel, Failure>> login(
+      String email, String password) async {
     var either = await authRemoteDs.login(email, password);
     return either.fold((response) {
       return left(response);

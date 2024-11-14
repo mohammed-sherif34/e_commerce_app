@@ -26,7 +26,7 @@ class CustomButton extends StatelessWidget {
             child: Container(
               height: MediaQuery.of(context).size.height * .06,
               decoration: BoxDecoration(
-                color: AppColor.whiteColor,
+                color: AppColors.whiteColor,
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Center(
@@ -34,13 +34,13 @@ class CustomButton extends StatelessWidget {
                   builder: (context, state) {
                     return state is AuthLoadingState
                         ? const CircularProgressIndicator(
-                            color: AppColor.primaryColor,
+                            color: AppColors.primaryColor,
                           )
                         : Text(
                             title,
                             style: GoogleFonts.poppins(
                               textStyle: const TextStyle(
-                                  color: AppColor.primaryColor,
+                                  color: AppColors.primaryColor,
                                   fontSize: 20,
                                   fontWeight: FontWeight.w600),
                             ),

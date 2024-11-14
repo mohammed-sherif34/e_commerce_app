@@ -51,7 +51,7 @@ class _LoginScreenState extends State<LoginScreen> {
         },
         child: Scaffold(
           resizeToAvoidBottomInset: false,
-          backgroundColor: AppColor.primaryColor,
+          backgroundColor: AppColors.primaryColor,
           body: Padding(
             padding: const EdgeInsets.symmetric(horizontal: ConstDValues.s16),
             child: Form(
@@ -75,7 +75,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       Constants.welcomeBackToRoute,
                       style: GoogleFonts.poppins(
                         textStyle: const TextStyle(
-                            color: AppColor.whiteColor,
+                            color: AppColors.whiteColor,
                             fontSize: ConstDValues.s20,
                             fontWeight: FontWeightManager.bold),
                       ),
@@ -102,7 +102,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         Constants.forgotPassword,
                         style: GoogleFonts.poppins(
                           textStyle: const TextStyle(
-                              color: AppColor.whiteColor,
+                              color: AppColors.whiteColor,
                               fontSize: ConstDValues.s18,
                               fontWeight: FontWeightManager.normal),
                         ),
@@ -128,7 +128,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           Constants.dontHaveAnAccount,
                           style: GoogleFonts.poppins(
                             textStyle: const TextStyle(
-                                color: AppColor.whiteColor,
+                                color: AppColors.whiteColor,
                                 fontSize: ConstDValues.s16,
                                 fontWeight: FontWeightManager.medium),
                           ),
@@ -144,7 +144,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             Constants.createAccount,
                             style: GoogleFonts.poppins(
                               textStyle: const TextStyle(
-                                  color: AppColor.whiteColor,
+                                  color: AppColors.whiteColor,
                                   fontSize: ConstDValues.s16,
                                   fontWeight: FontWeightManager.medium),
                             ),
