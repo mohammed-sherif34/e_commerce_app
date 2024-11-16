@@ -1,6 +1,6 @@
 import 'package:e_commerce_app/core/utils/constant_double_values.dart';
 import 'package:e_commerce_app/core/utils/constants_manager.dart';
-import 'package:e_commerce_app/presentation/main_layout/homeTap/widgets/brand_List.dart';
+import 'package:e_commerce_app/presentation/main_layout/homeTap/widgets/braand_list.dart';
 import 'package:e_commerce_app/presentation/main_layout/homeTap/widgets/category_list.dart';
 import 'package:e_commerce_app/presentation/main_layout/widgets/cursor_slider.dart';
 import 'package:flutter/material.dart';

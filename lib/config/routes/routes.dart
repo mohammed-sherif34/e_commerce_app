@@ -3,4 +3,6 @@ abstract class Routes {
   static const login = 'login';
   static const mainLayout = 'home';
   static const splachScreen = 'splachScreen';
+  static const productDetailsScreen = 'productDetailsScreen';
+
 }

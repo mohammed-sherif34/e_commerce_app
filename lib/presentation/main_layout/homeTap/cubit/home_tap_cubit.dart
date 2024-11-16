@@ -3,7 +3,6 @@ import 'package:e_commerce_app/data/models/category_or_brand_model.dart';
 import 'package:e_commerce_app/domain/useCases/all_brandas_use_case.dart';
 import 'package:e_commerce_app/domain/useCases/all_categories_use_case.dart';
 import 'package:injectable/injectable.dart';
-
 part 'home_tap_state.dart';
 @injectable
 class HomeTapCubit extends Cubit<HomeTapState> {
