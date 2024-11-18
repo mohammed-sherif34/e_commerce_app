@@ -33,10 +33,10 @@ class _MainLayoutState extends State<MainLayout> {
                     padding: const EdgeInsets.all(8.0),
                     child: Image.asset(ImageAssets.routeBLogo),
                   )),
-              const Row(
+               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                   CustomTextFiled(),
+                   const CustomTextFiled(),
                   CartIconButton(),
                 ],
               ),

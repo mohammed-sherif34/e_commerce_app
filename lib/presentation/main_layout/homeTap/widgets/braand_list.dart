@@ -3,6 +3,7 @@ import 'package:e_commerce_app/config/di/di.dart';
 import 'package:e_commerce_app/core/utils/constant_double_values.dart';
 import 'package:e_commerce_app/core/utils/snackbar_utils.dart';
 import 'package:e_commerce_app/core/widgets/custom_circular_indicator.dart';
+import 'package:e_commerce_app/core/widgets/custom_err_icon.dart';
 import 'package:e_commerce_app/presentation/main_layout/homeTap/cubit/home_tap_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -80,9 +81,7 @@ class _BrandsListState extends State<BrandsList> {
               },
             );
           } else if (state is BrandsFailure) {
-            return const Center(
-              child: Icon(Icons.error_outline),
-            );
+            return const CustomErrIcon();
           } else {
             return  const CustomCircularIndicator();
           }
@@ -91,5 +90,6 @@ class _BrandsListState extends State<BrandsList> {
     );
   }
 }
+
 
 
