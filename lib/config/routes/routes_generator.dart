@@ -1,6 +1,7 @@
 import 'package:e_commerce_app/config/routes/routes.dart';
 import 'package:e_commerce_app/presentation/auth/screens/login_screen.dart';
 import 'package:e_commerce_app/presentation/auth/screens/sign_up_screen.dart';
+import 'package:e_commerce_app/presentation/cart/cart_screen.dart';
 import 'package:e_commerce_app/presentation/main_layout/main_layout.dart';
 import 'package:e_commerce_app/presentation/splach/splach_screen.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +11,8 @@ abstract class RoutesGenerator {
     switch (settings.name) {
       case Routes.login:
         return MaterialPageRoute(builder: (_) => const LoginScreen());
-    
+      case Routes.cartScreen:
+        return MaterialPageRoute(builder: (_) => const CartScreen());
       case Routes.splachScreen:
         return MaterialPageRoute(builder: (_) => const SplachScreen());
       case Routes.mainLayout:

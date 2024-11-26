@@ -18,7 +18,7 @@ class _FavouriteIconState extends State<FavouriteIcon> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.all(16),
+      //margin: const EdgeInsets.all(16),
       height: 35.h,
       width: 40.w,
       decoration: BoxDecoration(
