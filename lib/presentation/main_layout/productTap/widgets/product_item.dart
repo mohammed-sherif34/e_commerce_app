@@ -19,8 +19,12 @@ class ProductItem extends StatelessWidget {
       children: [
         InkWell(
           onTap: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (_) => ProductDetailsScreen(product: product,)));
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (_) => ProductDetailsScreen(
+                          product: product,
+                        )));
           },
           child: Container(
             margin: const EdgeInsets.symmetric(horizontal: ConstDValues.s8),
@@ -69,7 +73,11 @@ class ProductItem extends StatelessWidget {
             ),
           ),
         ),
-        const FavouriteIcon(),
+        Padding(
+          padding: EdgeInsets.only(
+              top: ConstDValues.s11.h, right: ConstDValues.s17.w),
+          child: const FavouriteIcon(),
+        ),
       ],
     );
   }

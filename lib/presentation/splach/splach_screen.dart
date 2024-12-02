@@ -1,6 +1,7 @@
 import 'package:e_commerce_app/config/routes/routes.dart';
 import 'package:e_commerce_app/core/utils/assets_manager.dart';
 import 'package:e_commerce_app/core/utils/color_manager.dart';
+import 'package:e_commerce_app/core/utils/shared_prefrence_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -16,9 +17,16 @@ class _SplachScreenState extends State<SplachScreen>
     with SingleTickerProviderStateMixin {
   @override
   void initState() {
+     String route;
+    var token = SharedPreferencesManager.getData('token');
+    if (token == null) {
+      route = Routes.login;
+    } else {
+      route = Routes.mainLayout;
+    }
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
     Future.delayed(const Duration(seconds: 3), () {
-      Navigator.pushReplacementNamed(context, Routes.mainLayout);
+      Navigator.pushReplacementNamed(context, route);
     });
     super.initState();
   }

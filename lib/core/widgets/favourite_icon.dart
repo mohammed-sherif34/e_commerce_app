@@ -19,9 +19,18 @@ class _FavouriteIconState extends State<FavouriteIcon> {
   Widget build(BuildContext context) {
     return Container(
       //margin: const EdgeInsets.all(16),
-      height: 35.h,
-      width: 40.w,
+      height: 30.h,
+      width: 30.w,
+
       decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 2,
+            blurRadius: 3,
+            offset: const Offset(0, 3), // changes position of shadow
+          ),
+        ],
         color: AppColors.whiteColor,
         borderRadius: BorderRadius.circular(20),
       ),

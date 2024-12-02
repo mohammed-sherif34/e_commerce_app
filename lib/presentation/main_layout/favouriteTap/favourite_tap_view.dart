@@ -10,6 +10,7 @@ class FavouriteTapView extends StatelessWidget {
       children: [
         Expanded(
           child: ListView.builder(
+              padding: const EdgeInsets.all(0),
               itemCount: 20,
               itemBuilder: (context, index) {
                 return const FavouriteItem();

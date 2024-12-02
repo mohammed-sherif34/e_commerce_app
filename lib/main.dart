@@ -2,16 +2,21 @@ import 'package:e_commerce_app/config/app_theme.dart';
 import 'package:e_commerce_app/config/di/di.dart';
 import 'package:e_commerce_app/config/routes/routes.dart';
 import 'package:e_commerce_app/config/routes/routes_generator.dart';
+import 'package:e_commerce_app/core/utils/shared_prefrence_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   configureDependencies();
+  await SharedPreferencesManager.getInstance();
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

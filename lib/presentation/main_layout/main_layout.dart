@@ -33,13 +33,15 @@ class _MainLayoutState extends State<MainLayout> {
                     padding: const EdgeInsets.all(8.0),
                     child: Image.asset(ImageAssets.routeBLogo),
                   )),
-               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                   const CustomTextFiled(),
-                  CartIconButton(),
-                ],
-              ),
+              viewModel.selectedIndex != 3
+                  ? Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const CustomTextFiled(),
+                        CartIconButton(),
+                      ],
+                    )
+                  : const SizedBox(),
               Expanded(child: viewModel.taps[viewModel.selectedIndex]),
             ],
           ),

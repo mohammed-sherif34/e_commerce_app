@@ -43,6 +43,7 @@ class _LoginScreenState extends State<LoginScreen> {
       child: BlocListener<AuthCubit, AuthState>(
         listener: (context, state) {
           if (state is AuthSuccessState) {
+            Navigator.pushReplacementNamed(context, Routes.mainLayout);
             SnackBarUtils.showSnackBar(
                 context: context, text: Constants.loginSuccessfuly);
           } else if (state is AuthErrState) {

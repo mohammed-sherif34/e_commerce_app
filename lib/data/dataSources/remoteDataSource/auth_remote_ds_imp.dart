@@ -4,12 +4,13 @@ import 'package:e_commerce_app/core/api/api_manager.dart';
 import 'package:e_commerce_app/core/api/end_points.dart';
 import 'package:e_commerce_app/core/failures/failure.dart';
 import 'package:e_commerce_app/core/utils/constants_manager.dart';
+import 'package:e_commerce_app/core/utils/shared_prefrence_manager.dart';
 import 'package:e_commerce_app/data/dataSources/remoteDataSource/auth_remote_ds.dart';
 import 'package:e_commerce_app/data/models/user_model.dart';
 import 'package:e_commerce_app/domain/entity/sign_up_data.dart';
 import 'package:injectable/injectable.dart';
 
-@Injectable(as:AuthRemoteDs)
+@Injectable(as: AuthRemoteDs)
 class AuthRemoteDsImp implements AuthRemoteDs {
   AuthRemoteDsImp(this.apiManager);
   late ApiManager apiManager;
@@ -54,6 +55,11 @@ class AuthRemoteDsImp implements AuthRemoteDs {
         );
         var loginResponse = UserModel.fromJson(response.data);
         if (response.statusCode! >= 200 && response.statusCode! < 300) {
+          SharedPreferencesManager.saveUser(
+              key: 'myUser', user: loginResponse.user!);
+          SharedPreferencesManager.saveData(
+              key: 'token', value: loginResponse.token);
+              
           return Left(loginResponse);
         } else {
           return Right(ServerErr(errMessage: loginResponse.message!));
