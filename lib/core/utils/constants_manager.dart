@@ -33,13 +33,5 @@ class Constants {
   static const String viewAll = "view all";
   static const String brands = "Brands";
 
-//"what do you search for?"
-  /*
-  'enter youre Confirm password',
-                        title: 'Confirm Password',
-   hintText: 'enter your full name',
-                          title: 'Full Name',
-   hintText: 'enter youre email',
-                    title: 'Email',
-  */
+
 }

@@ -8,19 +8,20 @@ import 'package:injectable/injectable.dart';
 
 @injectable
 class AuthCubit extends Cubit<AuthState> {
-  SignUpUseCase? signUpUseCase;
-  LoginUseCase? loginUseCase;
-  AuthCubit({this.signUpUseCase, this.loginUseCase})
-      : super(AuthInitialState());
-  //signup data and logic handling
+  final SignUpUseCase? _signUpUseCase;
+  final LoginUseCase? _loginUseCase;
+  AuthCubit({SignUpUseCase? signUpUseCase, LoginUseCase? loginUseCase})
+      : _loginUseCase = loginUseCase, _signUpUseCase = signUpUseCase, super(AuthInitialState());
   final TextEditingController signupEmailController = TextEditingController();
   final TextEditingController signupPasswordController =
       TextEditingController();
   final TextEditingController nameController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
+  final TextEditingController loginEmailController = TextEditingController();
+  final TextEditingController loginPasswordController = TextEditingController();
   signup() async {
     emit(AuthLoadingState());
-    var either = await signUpUseCase!.call(SignUpData(
+    var either = await _signUpUseCase!.call(SignUpData(
         email: signupEmailController.text,
         password: signupPasswordController.text,
         rePassword: signupPasswordController.text,
@@ -36,11 +37,9 @@ class AuthCubit extends Cubit<AuthState> {
     );
   }
 
-  final TextEditingController loginEmailController = TextEditingController();
-  final TextEditingController loginPasswordController = TextEditingController();
   login() async {
     emit(AuthLoadingState());
-    var either = await loginUseCase!
+    var either = await _loginUseCase!
         .call(loginEmailController.text, loginPasswordController.text);
     either.fold(
       (userModel) => emit(

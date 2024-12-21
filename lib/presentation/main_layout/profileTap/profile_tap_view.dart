@@ -119,8 +119,8 @@ class ProfileTextFiledTiltle extends StatelessWidget {
   }
 }
 
-class ProfileTextFiled extends StatefulWidget {
-  ProfileTextFiled(
+class ProfileTextFiled extends StatelessWidget {
+  const ProfileTextFiled(
       {super.key,
       this.obscureText,
       this.enabled = false,
@@ -129,14 +129,9 @@ class ProfileTextFiled extends StatefulWidget {
       this.onSubmitted});
   final bool? obscureText;
   final TextEditingController controller;
-  bool enabled;
+  final bool enabled;
   final void Function(String?)? onSubmitted;
   final String? Function(String?)? validator;
-  @override
-  State<ProfileTextFiled> createState() => _ProfileTextFiledState();
-}
-
-class _ProfileTextFiledState extends State<ProfileTextFiled> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -147,13 +142,13 @@ class _ProfileTextFiledState extends State<ProfileTextFiled> {
         width: 398.w,
         child: TextFormField(
           textInputAction: TextInputAction.done,
-          validator: widget.validator,
-          onFieldSubmitted: widget.onSubmitted,
-          enabled: widget.enabled,
+          validator: validator,
+          onFieldSubmitted: onSubmitted,
+          enabled: enabled,
           style: GoogleFonts.poppins(
               textStyle: Theme.of(context).textTheme.titleSmall),
-          obscureText: widget.obscureText ?? false,
-          controller: widget.controller,
+          obscureText: obscureText ?? false,
+          controller: controller,
           decoration: InputDecoration(
             enabledBorder: OutlineInputBorder(
               borderSide: BorderSide(

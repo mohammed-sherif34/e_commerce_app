@@ -1,5 +1,5 @@
+import 'package:e_commerce_app/config/di/di.dart';
 import 'package:e_commerce_app/config/routes/routes.dart';
-import 'package:e_commerce_app/core/api/api_manager.dart';
 import 'package:e_commerce_app/core/utils/assets_manager.dart';
 import 'package:e_commerce_app/core/utils/color_manager.dart';
 import 'package:e_commerce_app/core/utils/constant_double_values.dart';
@@ -7,9 +7,6 @@ import 'package:e_commerce_app/core/utils/constants_manager.dart';
 import 'package:e_commerce_app/core/utils/font_manager.dart';
 import 'package:e_commerce_app/core/utils/snackbar_utils.dart';
 import 'package:e_commerce_app/core/utils/validator.dart';
-import 'package:e_commerce_app/data/dataSources/remoteDataSource/auth_remote_ds_imp.dart';
-import 'package:e_commerce_app/data/repo/auth_repo_impl.dart';
-import 'package:e_commerce_app/domain/useCases/login_use_case.dart';
 import 'package:e_commerce_app/presentation/auth/cubit/auth_cubit.dart';
 import 'package:e_commerce_app/presentation/auth/cubit/auth_state.dart';
 import 'package:e_commerce_app/presentation/auth/widgets/custom_auth_text_filed.dart';
@@ -27,15 +24,7 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  var viewModel = AuthCubit(
-    loginUseCase: LoginUseCase(
-      repo: AuthRepoImpl(
-        AuthRemoteDsImp(
-          ApiManager(),
-        ),
-      ),
-    ),
-  );
+  var viewModel = getIt.get<AuthCubit>();
   @override
   Widget build(BuildContext context) {
     return BlocProvider(

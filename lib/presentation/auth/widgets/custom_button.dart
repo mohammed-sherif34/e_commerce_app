@@ -1,4 +1,5 @@
 import 'package:e_commerce_app/core/utils/color_manager.dart';
+import 'package:e_commerce_app/core/utils/constant_double_values.dart';
 import 'package:e_commerce_app/core/widgets/custom_circular_indicator.dart';
 import 'package:e_commerce_app/presentation/auth/cubit/auth_cubit.dart';
 import 'package:e_commerce_app/presentation/auth/cubit/auth_state.dart';
@@ -40,7 +41,7 @@ class CustomButton extends StatelessWidget {
                             style: GoogleFonts.poppins(
                               textStyle: const TextStyle(
                                   color: AppColors.primaryColor,
-                                  fontSize: 20,
+                                  fontSize: ConstDValues.s20,
                                   fontWeight: FontWeight.w600),
                             ),
                           );

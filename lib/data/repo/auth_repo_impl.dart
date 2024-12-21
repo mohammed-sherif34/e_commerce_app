@@ -12,11 +12,7 @@ class AuthRepoImpl implements AuthRepo {
     this.authRemoteDs,
   );
   AuthRemoteDs authRemoteDs;
-  @override
-  Future<bool> forgetPassword() {
-    // TODO: implement forgetPassword
-    throw UnimplementedError();
-  }
+
 
   @override
   Future<Either<UserModel, Failure>> login(

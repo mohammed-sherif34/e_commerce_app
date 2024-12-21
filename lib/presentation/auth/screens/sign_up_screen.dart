@@ -1,12 +1,10 @@
-import 'package:e_commerce_app/core/api/api_manager.dart';
+import 'package:e_commerce_app/config/di/di.dart';
 import 'package:e_commerce_app/core/utils/assets_manager.dart';
 import 'package:e_commerce_app/core/utils/color_manager.dart';
+import 'package:e_commerce_app/core/utils/constant_double_values.dart';
 import 'package:e_commerce_app/core/utils/constants_manager.dart';
 import 'package:e_commerce_app/core/utils/snackbar_utils.dart';
 import 'package:e_commerce_app/core/utils/validator.dart';
-import 'package:e_commerce_app/data/dataSources/remoteDataSource/auth_remote_ds_imp.dart';
-import 'package:e_commerce_app/data/repo/auth_repo_impl.dart';
-import 'package:e_commerce_app/domain/useCases/sign_up_use_case.dart';
 import 'package:e_commerce_app/presentation/auth/cubit/auth_cubit.dart';
 import 'package:e_commerce_app/presentation/auth/cubit/auth_state.dart';
 import 'package:e_commerce_app/presentation/auth/widgets/custom_auth_text_filed.dart';
@@ -24,15 +22,8 @@ class SignUpScreen extends StatefulWidget {
 
 class _SignUpScreenState extends State<SignUpScreen> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  var viewModel = AuthCubit(
-    signUpUseCase: SignUpUseCase(
-      repo: AuthRepoImpl(
-        AuthRemoteDsImp(
-          ApiManager(),
-        ),
-      ),
-    ),
-  );
+  var viewModel = getIt.get<AuthCubit>();
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -51,7 +42,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             backgroundColor: AppColors.primaryColor,
             body: Padding(
               padding:
-                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16),
+                  const EdgeInsets.symmetric(horizontal: ConstDValues.s16, vertical: ConstDValues.s16),
               child: Form(
                 key: formKey,
                 child: SingleChildScrollView(
@@ -109,7 +100,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         },
                       ),
                       const SizedBox(
-                        height: 50,
+                        height: ConstDValues.s50,
                       ),
                       CustomButton(
                         title: Constants.signup,
@@ -121,7 +112,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         viewModel: viewModel,
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(top: 24.0),
+                        padding: const EdgeInsets.only(top: ConstDValues.s24),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -130,7 +121,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               style: GoogleFonts.poppins(
                                 textStyle: const TextStyle(
                                     color: AppColors.whiteColor,
-                                    fontSize: 16,
+                                    fontSize: ConstDValues.s16,
                                     fontWeight: FontWeight.w500),
                               ),
                             ),
