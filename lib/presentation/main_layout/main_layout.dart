@@ -1,7 +1,12 @@
+import 'package:e_commerce_app/config/di/di.dart';
 import 'package:e_commerce_app/core/utils/assets_manager.dart';
+import 'package:e_commerce_app/core/utils/shared_prefrence_manager.dart';
 import 'package:e_commerce_app/core/widgets/cart_icon_button.dart';
+import 'package:e_commerce_app/presentation/cart/cubit/cart_cubit.dart';
 import 'package:e_commerce_app/presentation/main_layout/cubit/home_view_model_cubit.dart';
 import 'package:e_commerce_app/presentation/main_layout/cubit/home_view_model_state.dart';
+import 'package:e_commerce_app/presentation/main_layout/productTap/cubit/product_tap_cubit.dart';
+import 'package:e_commerce_app/presentation/main_layout/productTap/cubit/product_tap_state.dart';
 import 'package:e_commerce_app/presentation/main_layout/widgets/custom_bottom_navigation_bar.dart';
 import 'package:e_commerce_app/presentation/main_layout/widgets/custom_text_filed.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +20,12 @@ class MainLayout extends StatefulWidget {
 }
 
 class _MainLayoutState extends State<MainLayout> {
-  HomeViewModelCubit viewModel = HomeViewModelCubit();
+  HomeViewModelCubit viewModel = getIt.get<HomeViewModelCubit>();
+  @override
+  void initState() {
+    CartCubit.get(context).getCart();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +48,23 @@ class _MainLayoutState extends State<MainLayout> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         const CustomTextFiled(),
-                        CartIconButton(),
+                        Badge(
+                            alignment: Alignment.topLeft,
+                            label:
+                                BlocBuilder<ProductTapCubit, ProductTapState>(
+                              bloc: ProductTapCubit.get(context),
+                              builder: (context, state) {
+                                if (state is AddToCartSuccessState) {
+                                  return Text(SharedPreferencesManager.getData(
+                                          'numOfCartItems')
+                                      .toString());
+                                }
+                                return Text(SharedPreferencesManager.getData(
+                                        'numOfCartItems')
+                                    .toString());
+                              },
+                            ),
+                            child: const CartIconButton()),
                       ],
                     )
                   : const SizedBox(),

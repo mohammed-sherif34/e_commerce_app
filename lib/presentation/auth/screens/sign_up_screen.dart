@@ -50,7 +50,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
             resizeToAvoidBottomInset: true,
             backgroundColor: AppColors.primaryColor,
             body: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16),
               child: Form(
                 key: formKey,
                 child: SingleChildScrollView(
@@ -61,7 +62,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         top: true,
                         child: Image.asset(
                           ImageAssets.routeLogo,
-                          height: MediaQuery.of(context).size.height * .15,
+                          height: MediaQuery.of(context).size.height * .1,
                         ),
                       ),
                       CustomAuthTextFiled(

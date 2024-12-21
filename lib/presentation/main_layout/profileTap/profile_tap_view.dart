@@ -1,16 +1,32 @@
+import 'package:e_commerce_app/config/di/di.dart';
 import 'package:e_commerce_app/config/routes/routes.dart';
 import 'package:e_commerce_app/core/utils/assets_manager.dart';
 import 'package:e_commerce_app/core/utils/color_manager.dart';
 import 'package:e_commerce_app/core/utils/constant_double_values.dart';
 import 'package:e_commerce_app/core/utils/shared_prefrence_manager.dart';
+import 'package:e_commerce_app/core/utils/validator.dart';
+import 'package:e_commerce_app/domain/entity/user_addreese_entity.dart';
+import 'package:e_commerce_app/presentation/main_layout/profileTap/cubit/profile_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class ProfileTapView extends StatelessWidget {
+class ProfileTapView extends StatefulWidget {
   const ProfileTapView({super.key});
-  //User  user = SharedPreferencesManager.getUser('myUser');
-  //TextEditingController fullNameController = TextEditingController(text: user.name);
+
+  @override
+  State<ProfileTapView> createState() => _ProfileTapViewState();
+}
+
+class _ProfileTapViewState extends State<ProfileTapView> {
+  ProfileCubit viewModel = getIt.get<ProfileCubit>();
+  @override
+  void initState() {
+    viewModel.getAddress();
+
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -23,7 +39,7 @@ class ProfileTapView extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'Welcome, Mohamed',
+                  'Welcome, ${viewModel.fullNameController.text}',
                   style: GoogleFonts.poppins(
                       textStyle: Theme.of(context).textTheme.bodyLarge),
                 ),
@@ -33,14 +49,17 @@ class ProfileTapView extends StatelessWidget {
                     SharedPreferencesManager.removeData('myUser');
                     Navigator.pushReplacementNamed(context, Routes.login);
                   },
-                  icon: Icon(Icons.logout),
+                  icon: const Icon(
+                    Icons.logout,
+                    color: AppColors.primaryColor,
+                  ),
                 )
               ],
             ),
             Padding(
               padding: EdgeInsets.only(bottom: 40.h),
               child: Text(
-                'mohamed.N@gmail.com',
+                viewModel.emailController.text,
                 style: GoogleFonts.poppins(
                   textStyle: Theme.of(context).textTheme.titleSmall!.copyWith(
                         color: AppColors.darkBlue.withOpacity(.6),
@@ -48,28 +67,35 @@ class ProfileTapView extends StatelessWidget {
                 ),
               ),
             ),
-            ProfileTextFiledTiltle(
+            const ProfileTextFiledTiltle(
               title: 'Your full name',
             ),
-            ProfileTextFiled(),
-            ProfileTextFiledTiltle(
+            ProfileTextFiled(
+              controller: viewModel.fullNameController,
+            ),
+            const ProfileTextFiledTiltle(
               title: 'Your E-mail',
             ),
-            ProfileTextFiled(),
-            ProfileTextFiledTiltle(
-              title: 'Your password',
-            ),
             ProfileTextFiled(
-              obscureText: true,
+              controller: viewModel.emailController,
             ),
-            ProfileTextFiledTiltle(
-              title: 'Your mobile number',
-            ),
-            ProfileTextFiled(),
-            ProfileTextFiledTiltle(
+            const ProfileTextFiledTiltle(
               title: 'Your Address',
             ),
-            ProfileTextFiled(),
+            Form(
+              key: viewModel.formKey,
+              child: ProfileTextFiled(
+                controller: viewModel.addressController,
+                enabled: true,
+                validator: Validators.addresseV,
+                onSubmitted: (value) {
+                  if (viewModel.formKey.currentState!.validate()) {
+                    viewModel.updateAddress(
+                        updatedAddress: UserAddreeseEntity(details: value));
+                  }
+                },
+              ),
+            ),
           ],
         ),
       ),
@@ -93,40 +119,60 @@ class ProfileTextFiledTiltle extends StatelessWidget {
   }
 }
 
-class ProfileTextFiled extends StatelessWidget {
-  ProfileTextFiled({
-    super.key,
-    this.obscureText,
-  });
-  bool? obscureText;
+class ProfileTextFiled extends StatefulWidget {
+  ProfileTextFiled(
+      {super.key,
+      this.obscureText,
+      this.enabled = false,
+      required this.controller,
+      this.validator,
+      this.onSubmitted});
+  final bool? obscureText;
+  final TextEditingController controller;
+  bool enabled;
+  final void Function(String?)? onSubmitted;
+  final String? Function(String?)? validator;
+  @override
+  State<ProfileTextFiled> createState() => _ProfileTextFiledState();
+}
 
-  TextEditingController controller =
-      TextEditingController(text: 'Mohamed Mohamed Nabil');
+class _ProfileTextFiledState extends State<ProfileTextFiled> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(top: ConstDValues.s16, bottom: ConstDValues.s24),
+      padding: const EdgeInsets.only(
+          top: ConstDValues.s16, bottom: ConstDValues.s24),
       child: SizedBox(
-        height: 54.h,
+        // height: 54.h,
         width: 398.w,
-        child: TextField(
+        child: TextFormField(
+          textInputAction: TextInputAction.done,
+          validator: widget.validator,
+          onFieldSubmitted: widget.onSubmitted,
+          enabled: widget.enabled,
           style: GoogleFonts.poppins(
               textStyle: Theme.of(context).textTheme.titleSmall),
-          obscureText: obscureText ?? false,
-          controller: controller,
+          obscureText: widget.obscureText ?? false,
+          controller: widget.controller,
           decoration: InputDecoration(
-              enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                      width: 1, color: AppColors.primaryColor.withOpacity(.4)),
-                  borderRadius: BorderRadius.circular(ConstDValues.s15)),
-              contentPadding: EdgeInsets.only(left: 16.w),
-              suffixIcon: IconButton(
-                  onPressed: () {},
-                  icon: ImageIcon(AssetImage(ImageAssets.editeIcon))),
-              border: OutlineInputBorder(
-                  borderSide:
-                      BorderSide(width: 1, color: AppColors.primaryColor),
-                  borderRadius: BorderRadius.circular(ConstDValues.s15))),
+            enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(
+                width: 1,
+                color: AppColors.primaryColor.withOpacity(.4),
+              ),
+              borderRadius: BorderRadius.circular(ConstDValues.s15),
+            ),
+            //contentPadding: EdgeInsets.only(left: 16.w),
+            suffixIcon: const ImageIcon(
+              AssetImage(ImageAssets.editeIcon),
+            ),
+
+            border: OutlineInputBorder(
+              borderSide:
+                  const BorderSide(width: 1, color: AppColors.primaryColor),
+              borderRadius: BorderRadius.circular(ConstDValues.s15),
+            ),
+          ),
         ),
       ),
     );

@@ -5,8 +5,8 @@ import 'package:e_commerce_app/domain/repo/home_repo.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
-class AllBrandasUseCase {
+class AllBrandesUseCase {
   HomeRepo repo;
-  AllBrandasUseCase(this.repo);
+  AllBrandesUseCase(this.repo);
   Future<Either<CategoryOrBrandModel, Failure>> call() => repo.getAllBrands();
 }

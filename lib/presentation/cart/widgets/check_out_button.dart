@@ -23,7 +23,6 @@ class CheckOutButton extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.values[2],
           children: [
-            
             Text(
               'Check out',
               style: GoogleFonts.poppins(

@@ -34,17 +34,17 @@ class _BrandsListState extends State<BrandsList> {
           const BoxConstraints(maxHeight: 300, maxWidth: double.infinity),
       child: BlocConsumer<HomeTapCubit, HomeTapState>(
         listener: (context, state) {
-          if (state is BrandsFailure) {
+          if (state is HomeTapFailure) {
             return SnackBarUtils.showSnackBar(
                 context: context, text: state.errMsg, seconds: 3);
           }
         },
         bloc: viewModel,
         builder: (context, state) {
-          if (state is BrandsSuccess) {
+          if (state is HomeTapSuccess) {
             return GridView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: state.brandsList.length,
+              itemCount: state.categorisOrBrandList.length,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2),
               itemBuilder: (context, index) {
@@ -63,15 +63,16 @@ class _BrandsListState extends State<BrandsList> {
                                 ),
                               ),
                           fit: BoxFit.cover,
-                          imageUrl: state.brandsList[index].image ?? '',
-                          placeholder: (context, url) => const CustomCircularIndicator(),
+                          imageUrl: state.categorisOrBrandList[index].image ?? '',
+                          placeholder: (context, url) =>
+                              const CustomCircularIndicator(),
                           errorWidget: (context, url, error) =>
                               const Icon(Icons.error)),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(ConstDValues.s8),
                       child: Text(
-                        state.brandsList[index].name ?? '',
+                        state.categorisOrBrandList[index].name ?? '',
                         style: GoogleFonts.poppins(
                             textStyle: Theme.of(context).textTheme.titleMedium),
                       ),
@@ -80,16 +81,13 @@ class _BrandsListState extends State<BrandsList> {
                 );
               },
             );
-          } else if (state is BrandsFailure) {
+          } else if (state is HomeTapFailure) {
             return const CustomErrIcon();
           } else {
-            return  const CustomCircularIndicator();
+            return const CustomCircularIndicator();
           }
         },
       ),
     );
   }
 }
-
-
-

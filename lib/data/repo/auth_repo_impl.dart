@@ -5,7 +5,8 @@ import 'package:e_commerce_app/data/models/user_model.dart';
 import 'package:e_commerce_app/domain/entity/sign_up_data.dart';
 import 'package:e_commerce_app/domain/repo/auth_repo.dart';
 import 'package:injectable/injectable.dart';
-@Injectable(as:AuthRepo)
+
+@Injectable(as: AuthRepo)
 class AuthRepoImpl implements AuthRepo {
   AuthRepoImpl(
     this.authRemoteDs,

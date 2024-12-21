@@ -3,14 +3,14 @@ import 'package:e_commerce_app/core/utils/constant_double_values.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class RateCountItem extends StatelessWidget {
-  const RateCountItem({
+class RateAverageItem extends StatelessWidget {
+  const RateAverageItem({
     super.key,
     required this.rateAverage,
-    required this.rateCount,
+     this.rateCount,
   });
   final num rateAverage;
-  final num rateCount;
+  final  num? rateCount;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -21,7 +21,7 @@ class RateCountItem extends StatelessWidget {
           size: ConstDValues.s15,
         ),
         Text(
-          '$rateAverage ($rateCount)',
+          rateCount != null ?'$rateAverage ($rateCount)':'$rateAverage',
           style: GoogleFonts.poppins(
               textStyle: Theme.of(context)
                   .textTheme

@@ -20,10 +20,10 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDs {
     if (connectivityResult.contains(ConnectivityResult.wifi) ||
         connectivityResult.contains(ConnectivityResult.mobile)) {
       try {
-        var resopnse = await apiManager
+        var response = await apiManager
             .get(endPoint: EndPoints.brands, param: {'limit': 50});
-        var brandResponse = CategoryOrBrandModel.fromJson(resopnse.data);
-        if (resopnse.statusCode! >= 200 && resopnse.statusCode! <= 300) {
+        var brandResponse = CategoryOrBrandModel.fromJson(response.data);
+        if (response.statusCode! >= 200 && response.statusCode! <= 300) {
           return Left(brandResponse);
         } else {
           return Right(Failure(errMessage: brandResponse.message!));
@@ -43,11 +43,11 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDs {
     if (connectivityResult.contains(ConnectivityResult.wifi) ||
         connectivityResult.contains(ConnectivityResult.mobile)) {
       try {
-        var resopnse = await apiManager.get(
+        var response = await apiManager.get(
           endPoint: EndPoints.categories,
         );
-        var categoryResponse = CategoryOrBrandModel.fromJson(resopnse.data);
-        if (resopnse.statusCode! >= 200 && resopnse.statusCode! <= 300) {
+        var categoryResponse = CategoryOrBrandModel.fromJson(response.data);
+        if (response.statusCode! >= 200 && response.statusCode! <= 300) {
           return Left(categoryResponse);
         } else {
           print(categoryResponse.message!);
@@ -69,11 +69,11 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDs {
     if (connectivityResult.contains(ConnectivityResult.wifi) ||
         connectivityResult.contains(ConnectivityResult.mobile)) {
       try {
-        var resopnse = await apiManager.get(
+        var response = await apiManager.get(
           endPoint: EndPoints.products,
         );
-        var productResponse = ProductModel.fromJson(resopnse.data);
-        if (resopnse.statusCode! >= 200 && resopnse.statusCode! <= 300) {
+        var productResponse = ProductModel.fromJson(response.data);
+        if (response.statusCode! >= 200 && response.statusCode! <= 300) {
           return Left(productResponse);
         } else {
           print(productResponse.message!);

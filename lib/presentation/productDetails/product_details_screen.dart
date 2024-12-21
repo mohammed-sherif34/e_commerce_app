@@ -5,7 +5,6 @@ import 'package:e_commerce_app/core/widgets/custom_circular_indicator.dart';
 import 'package:e_commerce_app/core/widgets/custom_err_icon.dart';
 import 'package:e_commerce_app/data/models/product_model.dart';
 import 'package:e_commerce_app/presentation/productDetails/widgets/add_to_cart_button.dart';
-import 'package:e_commerce_app/presentation/productDetails/widgets/change_product_count.dart';
 import 'package:e_commerce_app/presentation/productDetails/widgets/description_viwer.dart';
 import 'package:e_commerce_app/presentation/productDetails/widgets/product_details_app_bar.dart';
 import 'package:e_commerce_app/presentation/productDetails/widgets/product_title_and_price.dart';
@@ -66,11 +65,11 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                       SoldCountItem(
                         soldCount: widget.product.sold.toString(),
                       ),
-                      RateCountItem(
+                      RateAverageItem(
                         rateAverage: widget.product.ratingsAverage ?? 0,
                         rateCount: widget.product.ratingsQuantity ?? 0,
                       ),
-                      const ChangeProductCount(),
+                      //const ChangeProductCount(),
                     ],
                   ),
                   SizedBox(

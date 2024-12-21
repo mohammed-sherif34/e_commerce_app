@@ -31,7 +31,7 @@ class ReviewRateWidget extends StatelessWidget {
           size: ConstDValues.s15,
         ),
         const Spacer(),
-        const CustomAddIconButton()
+        CustomAddIconButton(productId: product.id!)
       ],
     );
   }

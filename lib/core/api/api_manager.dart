@@ -13,13 +13,18 @@ class ApiManager {
   ApiManager._() {
     dio = Dio();
   }
-   static final ApiManager _instance = ApiManager._();
+  static final ApiManager _instance = ApiManager._();
   Future<Response> get(
       {required String endPoint,
       Map<String, dynamic>? param,
       Map<String, dynamic>? headers}) {
-    return dio.get( endPoint,
-        queryParameters: param, options: Options(headers: headers));
+    return dio.get(
+      endPoint,
+      queryParameters: param,
+      options: Options(
+        headers: headers,
+      ),
+    );
   }
 
   Future<Response> post(
@@ -27,6 +32,30 @@ class ApiManager {
       required Map<String, dynamic> body,
       Map<String, dynamic>? headers}) {
     return dio.post(endPoint,
+        data: body,
+        options: Options(
+          headers: headers,
+          validateStatus: (status) => true,
+        ));
+  }
+
+  Future<Response> delete(
+      {required String endPoint,
+      Map<String, dynamic>? body,
+      Map<String, dynamic>? headers}) {
+    return dio.delete(endPoint,
+        data: body,
+        options: Options(
+          headers: headers,
+          validateStatus: (status) => true,
+        ));
+  }
+
+  Future<Response> put(
+      {required String endPoint,
+      required Map<String, dynamic> body,
+      Map<String, dynamic>? headers}) {
+    return dio.put(endPoint,
         data: body,
         options: Options(
           headers: headers,

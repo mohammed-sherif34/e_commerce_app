@@ -10,6 +10,8 @@ import 'package:injectable/injectable.dart';
 @injectable
 class HomeViewModelCubit extends Cubit<HomeViewModelState> {
   HomeViewModelCubit() : super(HomeViewModelInitial());
+  int selectedIndex = 0;
+  static get(context) => HomeViewModelCubit();
   List<Widget> taps = [
     const HomeTapView(),
     const ProductsTapView(),
@@ -17,10 +19,7 @@ class HomeViewModelCubit extends Cubit<HomeViewModelState> {
     const ProfileTapView(),
   ];
 
-  int selectedIndex = 0;
-
   onTapIcon(int value) {
-    emit(HomeViewModelInitial());
     selectedIndex = value;
     emit(HomeViewModelChangeTap());
   }

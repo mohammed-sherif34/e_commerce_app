@@ -6,9 +6,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 class SharedPreferencesManager {
   static late SharedPreferences _sharedPreferences;
 
-  static  getInstance() async {
+  static getInstance() async {
     _sharedPreferences = await SharedPreferences.getInstance();
   }
+
   static void saveUser({required String key, required User user}) {
     String userJson = jsonEncode(user.toJson());
     _sharedPreferences.setString(key, userJson);
@@ -20,8 +21,11 @@ class SharedPreferencesManager {
       Map<String, dynamic> userMap = jsonDecode(userJson);
       return User.fromJson(userMap);
     }
-    return User(name: '', ); // Return a default user if no user found
+    return User(
+      name: '',
+    ); // Return a default user if no user found
   }
+
   static void saveData({required String key, required dynamic value}) {
     if (value is String) {
       _sharedPreferences.setString(key, value);
@@ -36,7 +40,7 @@ class SharedPreferencesManager {
     }
   }
 
- static dynamic getData(String key) {
+  static dynamic getData(String key) {
     return _sharedPreferences.get(key);
   }
 

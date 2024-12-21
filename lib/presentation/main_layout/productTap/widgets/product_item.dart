@@ -76,7 +76,7 @@ class ProductItem extends StatelessWidget {
         Padding(
           padding: EdgeInsets.only(
               top: ConstDValues.s11.h, right: ConstDValues.s17.w),
-          child: const FavouriteIcon(),
+          child:  FavouriteIcon(product: product,),
         ),
       ],
     );

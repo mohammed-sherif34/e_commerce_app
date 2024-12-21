@@ -1,4 +1,5 @@
 import 'package:e_commerce_app/core/utils/color_manager.dart';
+import 'package:e_commerce_app/core/widgets/custom_circular_indicator.dart';
 import 'package:e_commerce_app/presentation/auth/cubit/auth_cubit.dart';
 import 'package:e_commerce_app/presentation/auth/cubit/auth_state.dart';
 import 'package:flutter/material.dart';
@@ -33,9 +34,7 @@ class CustomButton extends StatelessWidget {
                 child: BlocBuilder<AuthCubit, AuthState>(
                   builder: (context, state) {
                     return state is AuthLoadingState
-                        ? const CircularProgressIndicator(
-                            color: AppColors.primaryColor,
-                          )
+                        ? const CustomCircularIndicator()
                         : Text(
                             title,
                             style: GoogleFonts.poppins(

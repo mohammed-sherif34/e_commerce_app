@@ -26,6 +26,10 @@ class AuthRemoteDsImp implements AuthRemoteDs {
             endPoint: EndPoints.signup, body: entity.toJson());
         var signupResponse = UserModel.fromJson(response.data);
         if (response.statusCode! >= 200 && response.statusCode! < 300) {
+           SharedPreferencesManager.saveData(
+              key: 'token', value: signupResponse.token);
+           SharedPreferencesManager.saveUser(
+              key: 'myUser', user: signupResponse.user!);
           return Left(signupResponse);
         } else {
           return Right(ServerErr(errMessage: signupResponse.message!));
@@ -59,7 +63,7 @@ class AuthRemoteDsImp implements AuthRemoteDs {
               key: 'myUser', user: loginResponse.user!);
           SharedPreferencesManager.saveData(
               key: 'token', value: loginResponse.token);
-              
+
           return Left(loginResponse);
         } else {
           return Right(ServerErr(errMessage: loginResponse.message!));

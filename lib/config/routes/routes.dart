@@ -5,5 +5,4 @@ abstract class Routes {
   static const splachScreen = 'splachScreen';
   static const productDetailsScreen = 'productDetailsScreen';
   static const cartScreen = 'cartScreen';
-
 }

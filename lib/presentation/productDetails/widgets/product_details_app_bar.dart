@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-AppBar productDetailsAppBar(BuildContext context,String title) {
+AppBar productDetailsAppBar(BuildContext context, String title) {
   return AppBar(
     elevation: 0,
     toolbarHeight: 70.h,
@@ -14,7 +14,7 @@ AppBar productDetailsAppBar(BuildContext context,String title) {
     iconTheme: const IconThemeData(color: AppColors.primaryColor),
     backgroundColor: AppColors.whiteColor,
     title: Text(
-     title,
+      title,
       style:
           GoogleFonts.poppins(textStyle: Theme.of(context).textTheme.bodyLarge),
     ),

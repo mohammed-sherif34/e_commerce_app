@@ -17,7 +17,7 @@ class _SplachScreenState extends State<SplachScreen>
     with SingleTickerProviderStateMixin {
   @override
   void initState() {
-     String route;
+    String route;
     var token = SharedPreferencesManager.getData('token');
     if (token == null) {
       route = Routes.login;

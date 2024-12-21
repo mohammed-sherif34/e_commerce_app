@@ -16,5 +16,4 @@ abstract class ImageAssets {
   static const String categorTest = '$imagePath/category_test.png';
   static const String favouriteActiveIcon = '$imagePath/active_favourite.png';
   static const String editeIcon = '$imagePath/edite_icon.png';
-
 }

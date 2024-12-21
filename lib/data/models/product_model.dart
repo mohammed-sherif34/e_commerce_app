@@ -139,5 +139,4 @@ class Metadata {
   num? numberOfPages;
   num? limit;
   num? nextPage;
-
 }

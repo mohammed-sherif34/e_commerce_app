@@ -65,7 +65,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   Image.asset(
                     ImageAssets.routeLogo,
-                    height: MediaQuery.of(context).size.height * .15,
+                    height: MediaQuery.of(context).size.height * .1,
                   ),
                   const Spacer(
                     flex: 2,

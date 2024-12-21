@@ -54,7 +54,7 @@ class HomeTapView extends StatelessWidget {
                   textStyle: Theme.of(context).textTheme.bodyLarge),
             ),
           ),
-          const BrandsList(),
+           const BrandsList(),
         ],
       ),
     );

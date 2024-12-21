@@ -1,6 +1,11 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:e_commerce_app/core/utils/assets_manager.dart';
 import 'package:e_commerce_app/core/utils/color_manager.dart';
 import 'package:e_commerce_app/core/utils/constant_double_values.dart';
+import 'package:e_commerce_app/core/widgets/custom_circular_indicator.dart';
+import 'package:e_commerce_app/core/widgets/custom_err_icon.dart';
+import 'package:e_commerce_app/data/models/get_and_update_cart_model.dart';
+import 'package:e_commerce_app/presentation/cart/cubit/cart_cubit.dart';
 import 'package:e_commerce_app/presentation/productDetails/widgets/change_product_count.dart';
 import 'package:e_commerce_app/presentation/productDetails/widgets/rate_count_item.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +15,11 @@ import 'package:google_fonts/google_fonts.dart';
 class ProductCartItem extends StatelessWidget {
   const ProductCartItem({
     super.key,
+    required this.product,
+    required this.index,
   });
+  final Products product;
+  final int index;
 
   @override
   Widget build(BuildContext context) {
@@ -28,11 +37,13 @@ class ProductCartItem extends StatelessWidget {
             borderRadius: BorderRadius.circular(ConstDValues.s25),
             clipBehavior: Clip.hardEdge,
             child: SizedBox(
-              width: 120.w,
+              width: 100.w,
               height: 110.h,
-              child: Image.asset(
-                'assets/images/product_test4.jpeg',
+              child: CachedNetworkImage(
                 fit: BoxFit.fitWidth,
+                imageUrl: product.product!.imageCover ?? '',
+                placeholder: (context, url) => const CustomCircularIndicator(),
+                errorWidget: (context, url, error) => const CustomErrIcon(),
               ),
             ),
           ),
@@ -50,7 +61,7 @@ class ProductCartItem extends StatelessWidget {
                       SizedBox(
                         width: 200.w,
                         child: Text(
-                          'Women Shawl',
+                          product.product!.title ?? '',
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           style: GoogleFonts.poppins(
@@ -58,8 +69,13 @@ class ProductCartItem extends StatelessWidget {
                         ),
                       ),
                       IconButton(
-                          onPressed: () {},
-                          icon: ImageIcon(AssetImage(ImageAssets.deleteIcon))),
+                          onPressed: () {
+                            CartCubit.get(context).removeCartItem(
+                              product.product!.id!,
+                            );
+                          },
+                          icon: const ImageIcon(
+                              AssetImage(ImageAssets.deleteIcon))),
                     ],
                   ),
                   Expanded(
@@ -72,15 +88,20 @@ class ProductCartItem extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'EGP 3500',
+                                " ${product.price.toString()} EGP",
                                 style: GoogleFonts.poppins(
                                     textStyle:
                                         Theme.of(context).textTheme.bodyLarge),
                               ),
-                              RateCountItem(rateAverage: 4.8, rateCount: 5865),
+                              RateAverageItem(
+                                rateAverage: product.product!.ratingsAverage!,
+                              ),
                             ],
                           ),
-                          ChangeProductCount(),
+                          ChangeProductCount(
+                            product: product,
+                            index: index,
+                          ),
                         ],
                       ),
                     ),

@@ -28,6 +28,12 @@ abstract class Validators {
     }
     return null;
   }
+   static String? addresseV(value) {
+    if (value == null || value.trim().isEmpty) {
+      return "Full Name can not be empty";
+    }
+    return null;
+  }
 
   static String? phoneNumberV(value) {
     if (value == null || value.trim().isEmpty) {
