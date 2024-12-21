@@ -4,26 +4,14 @@ class HomeTapState {}
 
 class HomeTapInitial extends HomeTapState {}
 
-class CategorisLoading extends HomeTapState {}
+class HomeTapLoading extends HomeTapState {}
 
-class CategorisFailure extends HomeTapState {
+class HomeTapFailure extends HomeTapState {
   final String errMsg;
-  CategorisFailure({required this.errMsg});
+  HomeTapFailure({required this.errMsg});
 }
 
-class CategorisSuccess extends HomeTapState {
-  CategorisSuccess({ required this.categorisList});
-  List<CategoryOrBrand> categorisList;
-}
-
-class BrandsLoading extends HomeTapState {}
-
-class BrandsFailure extends HomeTapState {
-  final String errMsg;
-  BrandsFailure({required this.errMsg});
-}
-
-class BrandsSuccess extends HomeTapState {
-  BrandsSuccess({required this.brandsList});
-  List<CategoryOrBrand> brandsList = [];
+class HomeTapSuccess extends HomeTapState {
+  HomeTapSuccess({required this.categorisOrBrandList});
+  List<CategoryOrBrand> categorisOrBrandList;
 }

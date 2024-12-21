@@ -1,4 +1,5 @@
 import 'package:e_commerce_app/core/utils/color_manager.dart';
+import 'package:e_commerce_app/core/utils/constant_double_values.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -25,7 +26,7 @@ class _CustomAuthTextFiledState extends State<CustomAuthTextFiled> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 24.0),
+      padding: const EdgeInsets.only(top: ConstDValues.s24),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -34,11 +35,11 @@ class _CustomAuthTextFiledState extends State<CustomAuthTextFiled> {
             style: GoogleFonts.poppins(
                 textStyle: const TextStyle(
                     color: AppColors.whiteColor,
-                    fontSize: 18,
+                    fontSize: ConstDValues.s18,
                     fontWeight: FontWeight.w500)),
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 16.0),
+            padding: const EdgeInsets.only(top: ConstDValues.s16),
             child: TextFormField(
               //enabled: enabled,
               obscureText: widget.obscureText,
@@ -48,20 +49,20 @@ class _CustomAuthTextFiledState extends State<CustomAuthTextFiled> {
               validator: widget.validator,
 
               decoration: InputDecoration(
-                errorStyle: TextStyle(
-                    color: const Color.fromARGB(195, 255, 81, 81),
-                    fontSize: 12,
+                errorStyle: const TextStyle(
+                    color: AppColors.redColor,
+                    fontSize: ConstDValues.s12,
                     fontWeight: FontWeight.bold),
                 filled: true,
                 fillColor: AppColors.whiteColor,
                 border:
-                    OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+                    OutlineInputBorder(borderRadius: BorderRadius.circular(ConstDValues.s10)),
                 hintText: widget.hintText,
                 hintStyle: GoogleFonts.inter(
                   textStyle: Theme.of(context)
                       .textTheme
                       .titleSmall!
-                      .copyWith(color: const Color(0xffA9A9A9)),
+                      .copyWith(color: AppColors.grayColor),
                 ),
                 //hintText: 'enter your task title'
               ),
