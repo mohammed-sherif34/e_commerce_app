@@ -1,4 +1,4 @@
-Route E-Commerce App Documentation
+Route E-Commerce App 
 ==================================
 
 Overview
@@ -48,30 +48,32 @@ Features
 
 Folder Structure
 
-The project follows a modular structure for better scalability and maintainability:
+The project follows a Clean Arcitucture structure for better scalability and maintainability:
 
+
+```text
 lib/
-
-├── api/ # API-related utilities and services
-
-├── utils/ # Common utilities and helpers
-
-├── widgets/ # Reusable UI components
-
-├── data/ # Data sources
-
-│ ├── models/ # Data models
-
-│ └── repo/ # Repository classes for data handling
-
-├── domain/ # Business logic
-
-│ ├── entities/ # Core entities
-
-│ └── useCases/ # Application use cases
-
-├── presentation/ # UI layer
-
-│ ├── auth/ # Authentication screens
-
-│ ├── cart/ # Cart screens
+├── core/
+│   ├── api/                        # API-related utilities
+│   ├── di/                         # Dependency Injection setup
+│   ├── failures/                   # Error handling utilities
+│   ├── app_theme.dart              # Application theme configuration
+│   ├── assets_manager.dart         # Asset paths management
+│   ├── color_manager.dart          # Color palette management
+│   ├── constant_double_values.dart # Constants for double values
+│   ├── font_manager.dart           # Font style and size management
+│   └── snackbar_utils.dart         # Snackbar utility functions
+├── data/
+│   ├── models/                     # Models for the application
+│   └── Ds/                         # data sources follow reposatoris pattern
+    └── repo/                       # implementation for domain repos
+|___ domain/                        # Business logic
+    ├── entities/                   #Core entities
+│   └── useCases/                   # Application use cases
+    └── repo/                       # Repository classes for data handling
+├── presentation/
+│   ├── cubit/                      # State management (Cubit and states)
+│   ├── view/                       # UI components
+│   └── widgets/                    # Reusable UI components
+└── main.dart                       # Entry point of the application
+```
