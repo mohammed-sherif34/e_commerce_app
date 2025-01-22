@@ -1,55 +1,146 @@
-Route E-Commerce App 
-==================================
+
+Route E-Commerce App
+====================
 
 Overview
 --------
 
-The **Route E-Commerce App** is a fully-featured mobile application built with **Flutter**, designed to provide users with a seamless shopping experience. The app incorporates essential e-commerce functionalities such as user authentication, product browsing, cart management, and payment integration using Stripe. It is developed following **clean architecture** principles and uses **Cubit** for state management.
+The **Route E-Commerce App** is a comprehensive mobile application built using **Flutter**. It offers a smooth and user-friendly shopping experience by incorporating key e-commerce features like user authentication, product browsing, cart management, and payment processing with **Stripe**. The app adheres to **clean architecture principles** and employs **Cubit** for efficient state management.
 
-Features
---------
+📱 Features
+-----------
 
-### Authentication
+### Splash Screen
 
-*   **Login** and **Sign Up** using email and password.
+Displays the app logo while the application initializes.
+
+### Home Tab
+
+*   Showcases product categories and brands.
     
 
-### Tabs
+### Products Tab
 
-1.  **Home Tab**:
+*   Lists all available products in the app.
     
-    *   Displays product categories and brands.
-        
-2.  **Products Tab**:
-    
-    *   Shows all available products.
-        
-3.  **Favourite Tab**:
-    
-    *   Lists products marked as favourites by the user.
-        
-4.  **Profile Tab**:
-    
-    *   Displays user details (name, email, address).
-        
-    *   Option to log out.
-        
 
-### Cart & Payment
+### Favourite Tab
 
-*   **Cart Management**: Add, remove, and manage items in the cart.
+*   Displays a list of products marked as favourites by the user.
     
-*   **Payment Integration**:
+
+### Profile Tab
+
+*   Displays user details, including:
     
-    *   Supports **Stripe** for credit card payments.
+    *   Name
         
-    *   Includes **PayPal** payment option.
+    *   Email
         
+    *   Address
+        
+*   Includes an option to log out.
+    
 
-Folder Structure
+### Cart Management
 
-The project follows a Clean Arcitucture structure for better scalability and maintainability:
+*   Add, remove, and manage items in the shopping cart.
+    
 
+### Payment Integration
+
+*   **Stripe:** Enables secure credit card payments.
+    
+*   **PayPal:** Offers an additional payment option.
+    
+
+🛠 Technologies and Patterns
+----------------------------
+
+### 1\. Clean Architecture
+
+*   **Core Layer:** Contains common utilities and configurations used across the app.
+    
+*   **Data Layer:** Responsible for API calls, data sources, and repositories.
+    
+*   **Domain Layer:** Manages business logic, entities, and use cases.
+    
+*   **Presentation Layer:** Handles UI components and state management.
+    
+
+### 2\. State Management with Cubit
+
+*   **Cubit:** Used for predictable and reactive state updates across the app.
+    
+
+🖼 Screens Overview
+-------------------
+
+### 1\. Splash Screen
+
+Displays the app logo while resources and configurations are initialized.
+
+### 2\. Home Tab
+
+Allows users to explore product categories and featured brands.
+
+### 3\. Products Tab
+
+Presents a detailed list of all available products.
+
+### 4\. Favourite Tab
+
+Shows products marked as favourites by the user for quick access.
+
+### 5\. Profile Tab
+
+Enables users to view and update their profile information.
+
+### 6\. Cart and Payment
+
+*   Manage items in the cart.
+    
+*   Proceed to checkout and complete payments via Stripe or PayPal.
+    
+
+🌐 Localization
+---------------
+
+Localization setup is managed in the l10n/ folder. Steps to add support for new languages:
+
+1.  Add new language files in l10n/.
+    
+2.  Update supported locales in MaterialApp.
+    
+
+🖌 Theming
+----------
+
+Themes and colors are configured in the core/ folder:
+
+*   **app\_theme.dart:** Manages light and dark theme configurations.
+    
+*   **color\_manager.dart:** Defines the app's color palette.
+    
+
+📖 Dependencies
+---------------
+
+Key dependencies used in this project:
+
+*   **flutter\_bloc:** For state management with Cubit.
+    
+*   **stripe\_payment:** For secure payment processing.
+    
+*   **flutter\_localizations:** For multi-language support.
+    
+*   **dio:** For making API requests.
+    
+
+🗂 Folder Structure
+-------------------
+
+The project is organized as follows:
 
 ```text
 lib/
