@@ -12,12 +12,17 @@ import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
 import '../../core/api/api_manager.dart' as _i1057;
+import '../../core/utils/strip_services.dart' as _i653;
 import '../../data/dataSources/remoteDataSource/auth_remote_ds.dart' as _i563;
 import '../../data/dataSources/remoteDataSource/auth_remote_ds_imp.dart'
     as _i21;
 import '../../data/dataSources/remoteDataSource/cart_remote_ds.dart' as _i579;
 import '../../data/dataSources/remoteDataSource/cart_remote_ds_impl.dart'
     as _i676;
+import '../../data/dataSources/remoteDataSource/checkout_remote_ds.dart'
+    as _i650;
+import '../../data/dataSources/remoteDataSource/checkout_remote_ds_imp.dart'
+    as _i1007;
 import '../../data/dataSources/remoteDataSource/favourite_remote_ds.dart'
     as _i515;
 import '../../data/dataSources/remoteDataSource/favourite_remote_ds_impl.dart'
@@ -31,11 +36,13 @@ import '../../data/dataSources/remoteDataSource/profile_remote_data_source_impl.
     as _i303;
 import '../../data/repo/auth_repo_impl.dart' as _i0;
 import '../../data/repo/cart_repo_impl.dart' as _i818;
+import '../../data/repo/checkout_repo_impl.dart' as _i202;
 import '../../data/repo/favourite_repo_impl.dart' as _i594;
 import '../../data/repo/home_repo_impl.dart' as _i330;
 import '../../data/repo/profile_repo_impl.dart' as _i767;
 import '../../domain/repo/auth_repo.dart' as _i716;
 import '../../domain/repo/cart_repo.dart' as _i985;
+import '../../domain/repo/checkout_repo.dart' as _i695;
 import '../../domain/repo/favourite_repo.dart' as _i808;
 import '../../domain/repo/home_repo.dart' as _i645;
 import '../../domain/repo/profile_repo.dart' as _i851;
@@ -49,6 +56,7 @@ import '../../domain/useCases/get_logged_user_cart.dart' as _i129;
 import '../../domain/useCases/get_looged_user_favourite_use_case.dart' as _i286;
 import '../../domain/useCases/get_user_address_use_case.dart' as _i752;
 import '../../domain/useCases/login_use_case.dart' as _i546;
+import '../../domain/useCases/make_payment_use_case.dart' as _i82;
 import '../../domain/useCases/remove_product_from_favourite_use_case.dart'
     as _i283;
 import '../../domain/useCases/remove_specific_cart_item.dart' as _i88;
@@ -56,6 +64,7 @@ import '../../domain/useCases/sign_up_use_case.dart' as _i550;
 import '../../domain/useCases/update_cart_product_quantity.dart' as _i190;
 import '../../presentation/auth/cubit/auth_cubit.dart' as _i1063;
 import '../../presentation/cart/cubit/cart_cubit.dart' as _i314;
+import '../../presentation/cart/payment/cubit/payment_cubit.dart' as _i581;
 import '../../presentation/main_layout/cubit/home_view_model_cubit.dart'
     as _i982;
 import '../../presentation/main_layout/homeTap/cubit/home_tap_cubit.dart'
@@ -82,6 +91,8 @@ extension GetItInjectableX on _i174.GetIt {
           allBrandasUseCase: gh<_i946.AllBrandesUseCase>(),
           allCategoriesUseCase: gh<_i249.AllCategoriesUseCase>(),
         ));
+    gh.factory<_i653.StripServices>(
+        () => _i653.StripServices(gh<_i1057.ApiManager>()));
     gh.factory<_i314.CartCubit>(() => _i314.CartCubit(
           gh<_i129.GetLoggedUserCartUseCase>(),
           gh<_i88.RemoveSpecificCartItemUseCase>(),
@@ -97,10 +108,18 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i676.CartRemoteDsImpl(gh<_i1057.ApiManager>()));
     gh.factory<_i985.CartRepo>(
         () => _i818.CartRepoImpl(gh<_i579.CartRemoteDs>()));
+    gh.factory<_i650.CheckoutRemoteDs>(
+        () => _i1007.CheckoutRemoteDsImp(gh<_i653.StripServices>()));
+    gh.factory<_i695.CheckoutRepo>(
+        () => _i202.CheckoutRepoImpl(gh<_i650.CheckoutRemoteDs>()));
     gh.factory<_i27.HomeRemoteDs>(
         () => _i1031.HomeRemoteDataSourceImpl(gh<_i1057.ApiManager>()));
+    gh.factory<_i82.MakePaymentUseCase>(
+        () => _i82.MakePaymentUseCase(gh<_i695.CheckoutRepo>()));
     gh.factory<_i142.ProfileRemoteDs>(
         () => _i303.ProfileRemoteDsImpl(gh<_i1057.ApiManager>()));
+    gh.factory<_i581.PaymentCubit>(
+        () => _i581.PaymentCubit(gh<_i82.MakePaymentUseCase>()));
     gh.factory<_i515.FavouriteRemoteDs>(
         () => _i471.FavouriteRemoteDsImpl(gh<_i1057.ApiManager>()));
     gh.factory<_i716.AuthRepo>(

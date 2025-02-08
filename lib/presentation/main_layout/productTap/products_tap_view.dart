@@ -45,7 +45,7 @@ class _ProductsTapViewState extends State<ProductsTapView> {
             if (state is ProductTapSuccess) {
               return Expanded(
                 child: GridView.builder(
-                  itemCount: 20,
+                  itemCount: state.productList.length,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       mainAxisExtent: 300.h,
                       mainAxisSpacing: ConstDValues.s16.h,

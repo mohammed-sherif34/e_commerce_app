@@ -32,6 +32,5 @@ class Constants {
   static const String categories = "categories";
   static const String viewAll = "view all";
   static const String brands = "Brands";
-
-
+  static const String customerId = 'cus_RjgRPOQvV7gPxi';
 }

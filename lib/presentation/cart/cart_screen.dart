@@ -18,10 +18,8 @@ class CartScreen extends StatefulWidget {
 }
 
 class _CartScreenState extends State<CartScreen> {
-  //CartCubit viewModel=getIt.get<CartCubit>();
   @override
   void initState() {
-    // viewModel = CartCubit.get(context);
     CartCubit.get(context).getCart();
     super.initState();
   }

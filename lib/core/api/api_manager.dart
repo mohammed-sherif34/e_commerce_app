@@ -30,11 +30,13 @@ class ApiManager {
   Future<Response> post(
       {required String endPoint,
       required Map<String, dynamic> body,
-      Map<String, dynamic>? headers}) {
+      Map<String, dynamic>? headers,String? contentType}) {
     return dio.post(endPoint,
         data: body,
+        
         options: Options(
           headers: headers,
+          contentType: contentType,
           validateStatus: (status) => true,
         ));
   }
